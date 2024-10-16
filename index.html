@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>B10A6-Assess-Your-Asynchronous-Project</title>
+    <title>B10A6-Solution</title>
+    <!-- google font link  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <!-- tailwind and daisyUi CDN  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
@@ -18,6 +22,11 @@
     />
     <!-- css link  -->
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .font-lato {
+        font-family: "Lato", sans-serif;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -92,8 +101,8 @@
         </div>
         <!-- category button part starts  -->
         <div
-          id="categories"
-          class="my-6 flex justify-between flex-wrap gap-5"
+          id="pet-categories"
+          class="flex gap-4 justify-center lg:justify-between items-center my-4"
         ></div>
         <!-- sort part starts  -->
         <div class="flex justify-between items-center my-6">
@@ -106,14 +115,14 @@
           </button>
         </div>
         <!-- spinner add here  -->
-        <div id="spinner">
+        <!-- <div id="spinner">
           <div class="flex justify-center">
             <span class="loading loading-bars loading-xs"></span>
             <span class="loading loading-bars loading-sm"></span>
             <span class="loading loading-bars loading-md"></span>
             <span class="loading loading-bars loading-lg"></span>
           </div>
-        </div>
+        </div> -->
         <!-- allPets dynamic container -->
         <div class="grid grid-cols-4 mb-10 gap-2 lg:gap-5">
           <!-- left side  -->
