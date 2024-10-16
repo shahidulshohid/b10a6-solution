@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B10A6-Assess-Your-Asynchronous-Project</title>
+    <!-- tailwind and daisyUi CDN  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awesome CDN  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <!-- css link  -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav
+        class="w-11/12 mx-auto flex flex-col md:flex-row gap-5 justify-between items-center my-5"
+      >
+        <div class="flex gap-2 items-center">
+          <img class="w-4 h-4" src="/images/logo.webp" alt="" />
+          <h1
+            class="text-xl md:text-2xl font-semibold md:font-bold text-gray-950"
+          >
+            Paddy
+          </h1>
+        </div>
+        <div>
+          <ul
+            class="flex justify-center items-center gap-5 font-normal text-lg lg:text-xl text-gray-500"
+          >
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="w-10 h-10 border-2 p-2 rounded-full">
+          <img
+            src="https://img.icons8.com/?size=48&id=uzAO3KAfLyoE&format=png"
+            alt=""
+          />
+        </div>
+      </nav>
+      <!-- banner section starts  -->
+      <section class="w-11/12 mx-auto">
+        <div class="flex justify-center items-center">
+          <div class="w-[750px] text-center my-6">
+            <h4 class="text-2xl font-semibold text-gray-500 my-6">
+              Bringing Families Together ❤️‍🔥
+            </h4>
+            <h1 class="text-4xl lg:text-6xl font-bold my-6">
+              Your Path to Adoption Starts Here
+            </h1>
+            <p class="text-gray-500 text-lg font-semibold my-6">
+              There are a lots animals here. You can choose according your
+              wishes and adoption cat or dog and also another animals from here.
+              So, i am encouraging you from here to adopt animals and Your Path to Adoption Starts Here.
+            </p>
+            <div class="my-6">
+              <button
+                onclick="scrollToSectionBtn()"
+                class="btn bg-teal-800 text-lg text-white"
+              >
+                View More
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img src="images/pet.webp" alt="" />
+        </div>
+      </section>
+      <!-- banner section ends  -->
+    </header>
+    <main class="w-11/12 mx-auto">
+      <!-- best friend section starts -->
+      <section id="targetPaseByScroll">
+        <div class="flex justify-center items-center">
+          <div class="w-[750px] text-center my-6">
+            <h3 class="text-4xl font-bold">Adopt Your Best Friend</h3>
+            <p class="text-gray-500 text-lg font-semibold my-6">
+              You can adopt a animal from here. Because, animals can become your best friend, love, loyalty and companionship into your life. So, i am suggesting that, you can take any animal from here according your best choice. We have a lots of collection of any type of animals.
+            </p>
+          </div>
+        </div>
+        <!-- category button part starts  -->
+        <div
+          id="categories"
+          class="my-6 flex justify-between flex-wrap gap-5"
+        ></div>
+        <!-- sort part starts  -->
+        <div class="flex justify-between items-center my-6">
+          <h5 class="text-xl font-bold">Best Deal For you</h5>
+          <button
+            onclick="sortedProductsByPrice()"
+            class="btn bg-teal-800 text-lg text-white"
+          >
+            Sort by Price
+          </button>
+        </div>
+        <!-- spinner add here  -->
+        <div id="spinner">
+          <div class="flex justify-center">
+            <span class="loading loading-bars loading-xs"></span>
+            <span class="loading loading-bars loading-sm"></span>
+            <span class="loading loading-bars loading-md"></span>
+            <span class="loading loading-bars loading-lg"></span>
+          </div>
+        </div>
+        <!-- allPets dynamic container -->
+        <div class="grid grid-cols-4 mb-10 gap-2 lg:gap-5">
+          <!-- left side  -->
+          <div
+            id="allPets"
+            class="col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5 p-2 lg:p-3 rounded-xl"
+          ></div>
+          <!-- right side  -->
+          <div id="rightSite" class="col-span-1 rounded-2xl">
+            <div
+              id="right-img-container"
+              class="grid grid-cols-1 lg:grid-cols-2 gap-5 p-2"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <!-- best friend section ends -->
+    </main>
+    <h1 id="heading" class="bg-slate-600"></h1>
+
+    <!-- this modal for adopt button -->
+    <dialog id="showCountDown" class="modal">
+      <div class="modal-box text-center">
+        <i class="fa-solid fa-hands-clapping text-yellow-300 text-5xl"></i>
+        <h3 class="py-3 text-4xl font-bold">Congrates</h3>
+        <p class="text-xl font-semibold">
+          Adoption process is start for your pet
+        </p>
+        <h1 id="countDown" class="py-3 text-5xl font-bold">3</h1>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button id="close"></button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- this modal for details button-->
+    <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="modal-content"></div>
+        <div class="btn flex justify-center items-center bg-teal-50">
+          <div class="modal-action m-0">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="text-xl text-teal-900 font-bold">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- footer section starts  -->
+    <footer class="bg-[#131313] w-full">
+      <div
+        class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-14 gap-6"
+      >
+        <!-- left side  -->
+        <div class="text-white">
+          <div class="flex gap-2 items-center mb-6">
+            <img class="w-6 h-6" src="/images/logo.webp" alt="" />
+            <h4
+              class="text-xl md:text-2xl font-semibold md:font-bold text-white"
+            >
+              Paddy
+            </h4>
+          </div>
+          <p class="text-gray-400">Location: av. Washington 165, NY CA</p>
+          <p class="text-gray-400">54003</p>
+          <p class="text-gray-400">Phone: +31 85 964 47 25</p>
+          <p class="text-gray-400">Email: info@yourdomain.com</p>
+          <p class="text-gray-400">Openings hours: 9.00 AM - 5.00 PM</p>
+          <div class="mt-1 flex gap-3">
+            <i class="fa-brands fa-facebook text-blue-600 text-2xl"></i>
+            <i class="fa-solid fa-xmark text-2xl"></i>
+            <i class="fa-brands fa-youtube text-2xl text-red-600"></i>
+            <i class="fa-brands fa-instagram text-2xl text-red-600"></i>
+          </div>
+        </div>
+        <!-- middle side  -->
+        <div class="text-white flex flex-col">
+          <h4 class="mb-8">Useful Links</h4>
+          <a class="text-gray-500" href="#">Home</a>
+          <a class="text-gray-500" href="#">About Us</a>
+          <a class="text-gray-500" href="#">Animals</a>
+          <a class="text-gray-500" href="#">Foundation</a>
+          <a class="text-gray-500" href="#">Contact</a>
+        </div>
+        <!-- right side  -->
+        <div class="text-white flex flex-col">
+          <h4 class="mb-8">Drop a message</h4>
+          <input
+            class="py-3 px-3 rounded-2xl bg-[#211f1f]"
+            type="email"
+            placeholder="Enter Your Email"
+          />
+          <div class="bg-[#0E7A81] py-3 rounded-2xl text-center mt-4">
+            <button>Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- footer section ends  -->
+    <script src="pets.js"></script>
+  </body>
+</html>
