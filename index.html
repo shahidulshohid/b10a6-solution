@@ -114,22 +114,17 @@
             Sort by Price
           </button>
         </div>
-        <!-- spinner add here  -->
-        <!-- <div id="spinner">
-          <div class="flex justify-center">
-            <span class="loading loading-bars loading-xs"></span>
-            <span class="loading loading-bars loading-sm"></span>
-            <span class="loading loading-bars loading-md"></span>
-            <span class="loading loading-bars loading-lg"></span>
-          </div>
-        </div> -->
-        <!-- allPets dynamic container -->
         <div class="my-12">
           <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
             <!-- card section  -->
            <div class="lg:col-span-3">
             <!-- spinner  -->
-             <div></div>
+             <div id="loader" class="hidden">
+              <div class="relative flex justify-center items-center">
+                <div class="absolute animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-teal-500"></div>
+                <img src="./images/logo.webp"  class="rounded-full">
+            </div>
+             </div>
              <!-- carts  -->
               <div id="all-pets" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- dynamic pets carts here..  -->
@@ -228,6 +223,7 @@
       </div>
     </footer>
     <!-- footer section ends  -->
+     <script src="utilities.js"></script>
     <script src="pets.js"></script>
   </body>
 </html>

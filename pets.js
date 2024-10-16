@@ -7,22 +7,33 @@ const loadCategories = async() => {
 
 //load all pets
 const loadAllPets = async() => {
+  loadingSpinner(true)
   const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
   const data = await res.json()
-  displayPets(data.pets)
+  setTimeout(()=>{
+    displayPets(data.pets)
+    loadingSpinner(false)
+  },2000)
 }
 
 //load pets by category
 const loadPetsByCategory = async(category) => {
+  //remove active buttons if exit
+  removeActiveClasses()
+  // show active button 
+  addActiveClasses(category)
+  loadingSpinner(true)
   const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
   const data = await res.json()
-  displayPets(data.data)
+  setTimeout(()=>{
+    displayPets(data.data)
+    loadingSpinner(false)
+  },2000)
 }
 
 //display all pets
 const displayPets = (pets) => {
   const petContainers = document.getElementById('all-pets')
-  petContainers.innerHTML = ""
   pets.forEach(pet => {
     const div = document.createElement('div')
     div.classList.add("flex", "flex-col", "gap-2", "p-4", "border", "rounded-xl", "font-bold",)
@@ -52,7 +63,7 @@ const displayCategories = (categories) => {
   categories.forEach((category) =>{
     const div = document.createElement('div')
     div.innerHTML = `
-    <button onclick="loadPetsByCategory('${category.category}')" class="btn category-btn bg-white flex items-center gap-4 rounded-xl border px-14 py-4 cursor-pointer h-full">
+    <button id="btn-${category.category}" onclick="loadPetsByCategory('${category.category}')" class="btn category-btn bg-white flex items-center gap-4 rounded-xl border px-14 py-4 cursor-pointer h-full">
     <img class="w-10" src="${category.category_icon}"/>
     <p class="text-xl font-bold">${category.category}</p>
     </button>
