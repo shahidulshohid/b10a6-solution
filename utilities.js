@@ -1,4 +1,7 @@
 
+
+//save/store currently fetched pets data
+let storedPetsData = []
 //loading spinner
 const loadingSpinner = show => {
     const spinner = document.getElementById('loader')
@@ -25,4 +28,24 @@ const addActiveClasses = (category) => {
     const activeButton = document.getElementById(`btn-${category}`)
     activeButton.classList.remove('rounded-xl')
     activeButton.classList.add('bg-emerald-100', 'rounded-full', 'border-teal-800', 'border')
+}
+
+// handle like button 
+const like = imageUrl => {
+    const imageContainer = document.getElementById('liked-pets')
+    const div = document.createElement('div')
+    div.innerHTML = `
+    <img class="rounded-lg" src="${imageUrl}"/>
+    `;
+    imageContainer.appendChild(div)
+}
+
+// handle sort data 
+const sort = () => {
+    loadingSpinner(true)
+    const sortedData = storedPetsData.sort((a, b) => b.price - a.price)
+    setTimeout(()=>{
+        loadingSpinner(false)
+        displayPets(sortedData)
+    },500)
 }

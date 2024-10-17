@@ -12,6 +12,7 @@ const loadAllPets = async() => {
   const data = await res.json()
   setTimeout(()=>{
     displayPets(data.pets)
+    storedPetsData = data.pets
     loadingSpinner(false)
   },2000)
 }
@@ -27,6 +28,7 @@ const loadPetsByCategory = async(category) => {
   const data = await res.json()
   setTimeout(()=>{
     displayPets(data.data)
+    storedPetsData = data.data
     loadingSpinner(false)
   },2000)
 }
@@ -46,10 +48,10 @@ const displayPets = (pets) => {
     <p class="text-sm text-gray-700">Price:  ${pet.price ? "$" + pet.price : 'Not Available'}</p>
     <hr class="my-2"/>
     <div class="flex justify-between items-center px-2">
-    <button class="btn bg-white text-teat-700 border rounded-lg py-1 px-4">
+    <button onclick="like('${pet.image}')" class="btn bg-white text-teat-700 border rounded-lg py-1 px-4">
     <i class="fa-regular fa-thumbs-up"></i>
     </button>
-    <button class="btn bg-white text-teat-700 border rounded-lg py-1 px-4">Adopt</button>
+    <button onclick="adoptModal(this)" class="btn bg-white text-teat-700 border rounded-lg py-1 px-4">Adopt</button>
     <button class="btn bg-white text-teat-700 border rounded-lg py-1 px-4">Details</button>
     </div>
     `;
@@ -70,6 +72,25 @@ const displayCategories = (categories) => {
     `;
     categoryContainer.appendChild(div)
   })
+}
+
+//adopt button functionality
+const adoptModal = event => {
+  let count = 3
+  const countContainer = document.getElementById('countdown-container')
+  countContainer.innerHTML = count
+  my_modal_1.showModal()
+  const interval = setInterval(()=> {
+
+    count--
+    if(count !== 0) countContainer.innerHTML = count
+    if(count < 1){
+      clearInterval(interval)
+      my_modal_1.close()
+      event.textContent = "Adopted"
+      event.disabled = "true"
+    }
+  }, 1000)
 }
 
 loadAllPets()
